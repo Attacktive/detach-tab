@@ -1,0 +1,16 @@
+node_modules/
+npm-debug.log*
+
+dist/
+dist-firefox/
+dist-chrome/
+build/
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+
+.DS_Store
+Thumbs.db
