@@ -1,4 +1,4 @@
-import { getBrowserAPI, DetachInfo, UndoState, WindowInfo, TabInfo } from '../types/browser';
+import { DetachInfo, getBrowserAPI, TabInfo, UndoState, WindowInfo } from '../types/browser';
 
 const api = getBrowserAPI();
 
