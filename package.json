@@ -1,6 +1,6 @@
 {
 	"name": "detach-tab",
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"description": "Detach and Reattach tab with customizable keyboard shortcuts - Cross-browser TypeScript edition",
 	"main": "dist/background.js",
 	"scripts": {
