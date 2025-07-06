@@ -11,23 +11,16 @@ async function updateUI() {
 	const commands = await api.commands.getAll();
 
 	for (const command of commands) {
-		switch (command.name) {
-			case COMMAND_DETACH: {
-				const detachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_DETACH);
-				if (detachInput) {
-					detachInput.value = command.shortcut ?? '';
-				}
+		if (command.name === COMMAND_DETACH) {
+			const detachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_DETACH);
+			if (detachInput) {
+				detachInput.value = command.shortcut ?? '';
 			}
-
-				break;
-			case COMMAND_REATTACH: {
-				const reattachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_REATTACH);
-				if (reattachInput) {
-					reattachInput.value = command.shortcut ?? '';
-				}
+		} else if (command.name === COMMAND_REATTACH) {
+			const reattachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_REATTACH);
+			if (reattachInput) {
+				reattachInput.value = command.shortcut ?? '';
 			}
-
-				break;
 		}
 	}
 }
