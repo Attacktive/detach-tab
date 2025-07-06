@@ -22,7 +22,7 @@ jobs:
       - name: 'Build'
         run: 'npm run build'
       - name: 'Archive Artifacts'
-        run: 'zip detach-tab.zip dist/* -r'
+        run: 'zip detach-tab.zip dist-*/* -r'
       - name: 'Create Release'
         uses: 'softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8'
         with:
