@@ -1,6 +1,8 @@
-import { getBrowserAPI } from '../types/browser';
+// It's dedicated to Firefox 🦊
 
-const api = getBrowserAPI();
+import { getBrowserApi } from '../types/browser';
+
+const api = getBrowserApi() as typeof browser;
 const COMMAND_DETACH = 'detach-tab';
 const COMMAND_REATTACH = 'reattach-tab';
 
@@ -11,16 +13,23 @@ async function updateUI() {
 	const commands = await api.commands.getAll();
 
 	for (const command of commands) {
-		if (command.name === COMMAND_DETACH) {
-			const detachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_DETACH);
-			if (detachInput) {
-				detachInput.value = command.shortcut ?? '';
+		switch (command.name) {
+			case COMMAND_DETACH: {
+				const detachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_DETACH);
+				if (detachInput) {
+					detachInput.value = command.shortcut ?? '';
+				}
 			}
-		} else if (command.name === COMMAND_REATTACH) {
-			const reattachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_REATTACH);
-			if (reattachInput) {
-				reattachInput.value = command.shortcut ?? '';
+
+				break;
+			case COMMAND_REATTACH: {
+				const reattachInput = document.querySelector<HTMLInputElement>(SELECTOR_SHORTCUT_REATTACH);
+				if (reattachInput) {
+					reattachInput.value = command.shortcut ?? '';
+				}
 			}
+
+				break;
 		}
 	}
 }
@@ -44,6 +53,7 @@ async function applyShortcut() {
 
 		showSuccessMessage('Shortcuts updated successfully!');
 	} catch (error) {
+		alert(error);
 		console.error('Failed to apply shortcuts:', error);
 		showErrorMessage('Failed to update shortcuts. Please try again.');
 
@@ -108,12 +118,7 @@ async function initialize() {
 		keyboardRulesLink.addEventListener(
 			'click',
 			() => {
-				const isFirefox = navigator.userAgent.includes('Firefox');
-				if (isFirefox) {
-					window.open('https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Key_combinations', '_blank');
-				} else {
-					keyboardRulesLink.href = 'https://developer.chrome.com/docs/extensions/reference/commands/';
-				}
+				window.open('https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Key_combinations', '_blank');
 			}
 		);
 	}

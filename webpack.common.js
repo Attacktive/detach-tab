@@ -1,10 +1,6 @@
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-
 export default {
 	entry: {
-		background: './src/background/background.ts',
-		options: './src/options/options.ts'
+		background: './src/background/background.ts'
 	},
 	module: {
 		rules: [
@@ -23,21 +19,6 @@ export default {
 	resolve: {
 		extensions: ['.ts', '.js']
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: './src/options/options.html',
-			filename: 'options.html',
-			chunks: ['options']
-		}),
-		new CopyWebpackPlugin({
-			patterns: [
-				{
-					from: './src/options/options.css',
-					to: 'options.css'
-				}
-			]
-		})
-	],
 	optimization: {
 		splitChunks: {
 			chunks: 'all',
