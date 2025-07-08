@@ -8,13 +8,7 @@
 		"48": "icons/icon48.png",
 		"128": "icons/icon128.png"
 	},
-	"options_ui": {
-		"page": "options.html",
-		"open_in_tab": false
-	},
-	"permissions": [
-		"tabs"
-	],
+	"permissions": ["tabs"],
 	"background": {
 		"service_worker": "background.js",
 		"type": "module"
@@ -22,13 +16,15 @@
 	"commands": {
 		"detach-tab": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+Space"
+				"default": "Ctrl+Shift+Space",
+				"mac": "Command+Shift+Space"
 			},
 			"description": "Detaches active tab"
 		},
 		"reattach-tab": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+V"
+				"default": "Ctrl+Shift+V",
+				"mac": "Command:Shift+V"
 			},
 			"description": "Reattaches last detached tab"
 		}
@@ -36,4 +32,4 @@
 	"action": {
 		"default_title": "Detach Tab"
 	}
-} 
+}
