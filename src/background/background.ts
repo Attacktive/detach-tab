@@ -1,6 +1,6 @@
-import { DetachInfo, getBrowserAPI, TabInfo, UndoState, WindowInfo } from '../types/browser';
+import { DetachInfo, getBrowserApi, TabInfo, UndoState, isFirefox } from '../types/browser';
 
-const api = getBrowserAPI();
+const api = getBrowserApi();
 
 interface GlobalState {
 	undoState?: UndoState;
@@ -29,7 +29,7 @@ async function getActiveTab() {
 }
 
 async function detachActiveTab() {
-	const windowInfo = await api.windows.getCurrent({ populate: true }) as WindowInfo;
+	const windowInfo = await api.windows.getCurrent({ populate: true });
 	if (!windowInfo.tabs || windowInfo.tabs.length < 2) {
 		return;
 	}
@@ -53,7 +53,7 @@ async function reattachLastTab() {
 		const targetTab: TabInfo | undefined = allWindows
 			.map(({ tabs }) => tabs)
 			.filter(Boolean)
-			.flatMap(tabs => tabs)
+			.flatMap(tabs => tabs as TabInfo[])
 			.find((tab: TabInfo) => tab.id === globalState.undoState!.tabId);
 
 		if (!targetTab) {
@@ -76,7 +76,12 @@ async function reattachLastTab() {
 		);
 
 		await api.windows.update(globalState.undoState.windowId, { focused: true });
-		await api.tabs.update(globalState.undoState.tabId, { active: true });
+
+		if (isFirefox()) {
+			await (api as typeof browser).tabs.update(globalState.undoState.tabId, { active: true });
+		} else {
+			await (api as typeof chrome).tabs.update(globalState.undoState.tabId, { active: true });
+		}
 	} catch (error) {
 		console.error('Failed to reattach tab, but still clearing the detaching history.', error);
 		throw error;
