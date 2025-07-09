@@ -1,6 +1,6 @@
 {
 	"name": "detach-tab",
-	"version": "3.1.0",
+	"version": "3.1.1",
 	"description": "Detach and Reattach tab with customizable keyboard shortcuts - Cross-browser TypeScript edition",
 	"main": "dist/background.js",
 	"scripts": {
@@ -15,10 +15,10 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.30.1",
-		"@types/chrome": "^0.0.329",
+		"@types/chrome": "^0.0.331",
 		"@types/firefox-webext-browser": "^120.0.4",
-		"@typescript-eslint/eslint-plugin": "^8.35.1",
-		"@typescript-eslint/parser": "^8.35.1",
+		"@typescript-eslint/eslint-plugin": "^8.36.0",
+		"@typescript-eslint/parser": "^8.36.0",
 		"copy-webpack-plugin": "^13.0.0",
 		"eslint": "^9.30.1",
 		"globals": "^16.3.0",
@@ -26,7 +26,7 @@
 		"rimraf": "^6.0.1",
 		"ts-loader": "^9.5.2",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.35.1",
+		"typescript-eslint": "^8.36.0",
 		"webextension-polyfill": "^0.12.0",
 		"webpack": "^5.99.9",
 		"webpack-cli": "^6.0.1",
