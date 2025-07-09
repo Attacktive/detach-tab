@@ -23,8 +23,8 @@ jobs:
         run: 'npm run build'
       - name: 'Archive Artifacts'
         run: |
-          zip detach-tab-chrome.zip dist-chrome/* -r
-          zip detach-tab-firefox.xpi dist-firefox/* -r
+          zip detach-tab-chrome-${{ github.ref_name }}.zip dist-chrome/* -r
+          zip detach-tab-firefox-${{ github.ref_name }}.xpi dist-firefox/* -r
       - name: 'Create Release'
         uses: 'softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8'
         with:
