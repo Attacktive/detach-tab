@@ -16,9 +16,6 @@
 		"name": "Claymont",
 		"url": "https://github.com/Claymont/detach-tab"
 	},
-	"permissions": [
-		"tabs"
-	],
 	"background": {
 		"scripts": ["background.js"]
 	},
