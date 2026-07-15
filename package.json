@@ -4,14 +4,14 @@
 	"description": "Detach and Reattach tab with customizable keyboard shortcuts - Cross-browser TypeScript edition",
 	"main": "dist/background.js",
 	"scripts": {
-		"build": "npm run clean && npm run build:firefox && npm run build:chrome",
+		"build": "bun run clean && bun run build:firefox && bun run build:chrome",
 		"build:firefox": "webpack --config webpack.firefox.js",
 		"build:chrome": "webpack --config webpack.chrome.js",
 		"clean": "rimraf dist-firefox dist-chrome",
 		"lint": "eslint src --ext .ts,.js",
 		"lint:fix": "eslint src --ext .ts,.js --fix",
 		"type-check": "tsc --noEmit",
-		"watch": "npm run build -- --watch"
+		"watch": "bun run build --watch"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.30.1",

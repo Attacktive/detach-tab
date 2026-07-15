@@ -6,27 +6,23 @@ on:
 jobs:
   release:
     runs-on: 'ubuntu-latest'
-    strategy:
-      matrix:
-        node-version: ['22.x']
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v4'
-      - name: "Use Node.js ${{ matrix.node-version }}"
-        uses: 'actions/setup-node@v4'
+        uses: 'actions/checkout@v7'
+      - name: 'Install Bun'
+        uses: 'oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6'
         with:
-          node-version: "${{ matrix.node-version }}"
-          cache: 'npm'
-      - name: 'Clean Install'
-        run: 'npm ci'
+          bun-version: 'latest'
+      - name: 'Install packages'
+        run: 'bun install --frozen-lockfile'
       - name: 'Build'
-        run: 'npm run build'
+        run: 'bun run build'
       - name: 'Archive Artifacts'
         run: |
           zip detach-tab-chrome-${{ github.ref_name }}.zip dist-chrome/* -r
           zip detach-tab-firefox-${{ github.ref_name }}.xpi dist-firefox/* -r
       - name: 'Create Release'
-        uses: 'softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8'
+        uses: 'softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228'
         with:
           prerelease: true
           generate_release_notes: true
