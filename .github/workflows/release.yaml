@@ -19,8 +19,8 @@ jobs:
         run: 'bun run build'
       - name: 'Archive Artifacts'
         run: |
-          zip detach-tab-chrome-${{ github.ref_name }}.zip dist-chrome/* -r
-          zip detach-tab-firefox-${{ github.ref_name }}.xpi dist-firefox/* -r
+          zip "detach-tab-chrome-${GITHUB_REF_NAME}.zip" dist-chrome/* -r
+          zip "detach-tab-firefox-${GITHUB_REF_NAME}.xpi" dist-firefox/* -r
       - name: 'Create Release'
         uses: 'softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3'
         with:
