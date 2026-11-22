@@ -1,8 +1,9 @@
 // It's dedicated to Firefox 🦊
 
 import { getBrowserApi } from '../types/browser';
+import type { FirefoxApi } from '../types/browser';
 
-const api = getBrowserApi() as typeof browser;
+const api = getBrowserApi() as FirefoxApi;
 const COMMAND_DETACH = 'detach-tab';
 const COMMAND_REATTACH = 'reattach-tab';
 

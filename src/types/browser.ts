@@ -1,4 +1,11 @@
-export type TabInfo = chrome.tabs.Tab | browser.tabs.Tab;
+import type FirefoxBrowser from 'webextension-polyfill';
+import type { Tabs } from 'webextension-polyfill';
+
+export type FirefoxApi = typeof FirefoxBrowser;
+
+declare const browser: FirefoxApi;
+
+export type TabInfo = chrome.tabs.Tab | Tabs.Tab;
 
 export interface DetachInfo {
 	oldWindowId: number;
@@ -11,7 +18,7 @@ export interface UndoState {
 	tabId: number;
 }
 
-export type BrowserApi = typeof chrome | typeof browser;
+export type BrowserApi = typeof chrome | FirefoxApi;
 
 export const getBrowserApi = (): BrowserApi => {
 	if (isFirefox()) {

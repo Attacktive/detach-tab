@@ -1,4 +1,5 @@
-import { DetachInfo, getBrowserApi, TabInfo, UndoState, isFirefox } from '../types/browser';
+import { getBrowserApi, isFirefox } from '../types/browser';
+import type { DetachInfo, FirefoxApi, TabInfo, UndoState } from '../types/browser';
 
 const api = getBrowserApi();
 
@@ -78,7 +79,7 @@ async function reattachLastTab() {
 		await api.windows.update(globalState.undoState.windowId, { focused: true });
 
 		if (isFirefox()) {
-			await (api as typeof browser).tabs.update(globalState.undoState.tabId, { active: true });
+			await (api as FirefoxApi).tabs.update(globalState.undoState.tabId, { active: true });
 		} else {
 			await (api as typeof chrome).tabs.update(globalState.undoState.tabId, { active: true });
 		}

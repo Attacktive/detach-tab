@@ -17,7 +17,7 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"types": ["chrome", "firefox-webext-browser"]
+		"types": ["chrome"]
 	},
 	"include": [
 		"src/**/*"
